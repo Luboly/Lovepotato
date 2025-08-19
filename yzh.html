@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生日快乐！狗哥</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
+            background: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+        
+        h1 {
+            color: #ff6b6b;
+            margin-bottom: 20px;
+            font-size: 2.8rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: pulse 2s infinite;
+            padding: 0 20px;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .instruction {
+            margin: 30px 0;
+            color: #795548;
+            font-weight: bold;
+            font-size: 1.3rem;
+            position: relative;
+            z-index: 100;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+            padding: 0 20px;
+        }
+        
+        .cake-container {
+            position: relative;
+            margin: 40px auto;
+            width: 320px;
+            height: 320px;
+            z-index: 50;
+        }
+        
+        /* 重新设计的精美蛋糕 */
+        .cake {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 220px;
+            height: 200px;
+        }
+        
+        .cake-base {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 220px;
+            height: 90px;
+            background: linear-gradient(to right, #f8bbd0, #f48fb1, #f8bbd0);
+            border-radius: 10px 10px 5px 5px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .cake-middle {
+            position: absolute;
+            bottom: 90px;
+            left: 15px;
+            width: 190px;
+            height: 60px;
+            background: linear-gradient(to right, #e6a0c5, #d681b0, #e6a0c5);
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cake-top {
+            position: absolute;
+            bottom: 150px;
+            left: 30px;
+            width: 160px;
+            height: 50px;
+            background: linear-gradient(to right, #f48fb1, #e91e63, #f48fb1);
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .frosting {
+            position: absolute;
+            bottom: 140px;
+            left: 40px;
+            width: 140px;
+            height: 20px;
+            background: #ffeb3b;
+            border-radius: 10px;
+            opacity: 0.8;
+        }
+        
+        .candle {
+            position: absolute;
+            bottom: 190px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 50px;
+            background: linear-gradient(to right, #ffeb3b, #ffc107, #ffeb3b);
+            border-radius: 7px;
+            z-index: 20;
+            box-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+        }
+        
+        .flame {
+            position: absolute;
+            bottom: 240px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 22px;
+            height: 40px;
+            background: #ff9800;
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 20px 8px rgba(255, 100, 100, 0.8);
+            opacity: 1;
+            transition: opacity 0.5s;
+            cursor: pointer;
+            animation: flicker 1s infinite alternate;
+            z-index: 30;
+        }
+        
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1); }
+            25% { transform: translateX(-50%) scale(1.1); }
+            50% { transform: translateX(-50%) scale(0.9); }
+            75% { transform: translateX(-50%) scale(1.2); }
+            100% { transform: translateX(-50%) scale(1); }
+        }
+        
+        .decoration {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e91e63;
+            box-shadow: 0 0 5px rgba(233, 30, 99, 0.5);
+        }
+        
+        .decoration-1 { bottom: 70px; left: 30px; }
+        .decoration-2 { bottom: 70px; right: 30px; }
+        .decoration-3 { bottom: 120px; left: 40px; }
+        .decoration-4 { bottom: 120px; right: 40px; }
+        .decoration-5 { bottom: 170px; left: 60px; }
+        .decoration-6 { bottom: 170px; right: 60px; }
+        
+        .message {
+            margin-top: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            display: none;
+            transform: scale(0);
+            transition: transform 0.5s;
+            text-align: left;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .message.show {
+            display: block;
+            transform: scale(1);
+            animation: letterOpen 1s forwards;
+        }
+        
+        @keyframes letterOpen {
+            0% { transform: scale(0) rotate(-5deg); }
+            50% { transform: scale(1.05) rotate(2deg); }
+            100% { transform: scale(1) rotate(0); }
+        }
+        
+        .signature {
+            text-align: right;
+            margin-top: 20px;
+            font-style: italic;
+            color: #e91e63;
+            font-weight: bold;
+        }
+        
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff6b6b"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center center;
+            opacity: 0;
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f44336;
+            opacity: 0;
+            top: 0;
+            animation: confettiFall 5s linear forwards;
+            z-index: 1000;
+        }
+        
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(0) rotate(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        .btn {
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .btn:hover {
+            background: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .plate {
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 260px;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 50%;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>生日快乐，狗哥！</h1>
+        
+        <div class="instruction">点击吹灭蜡烛查看祝福</div>
+        
+        <div class="cake-container">
+            <div class="plate"></div>
+            <div class="cake">
+                <div class="cake-base"></div>
+                <div class="cake-middle"></div>
+                <div class="cake-top"></div>
+                <div class="frosting"></div>
+                <div class="decoration decoration-1"></div>
+                <div class="decoration decoration-2"></div>
+                <div class="decoration decoration-3"></div>
+                <div class="decoration decoration-4"></div>
+                <div class="decoration decoration-5"></div>
+                <div class="decoration decoration-6"></div>
+                <div class="candle"></div>
+                <div class="flame" id="flame"></div>
+            </div>
+        </div>
+        
+        <div class="message" id="message">
+            <p>生日快乐呀 狗哥！</p>
+            <p>虽然我们可能不像你和asa、飘飘玩的那么久，但相处这段时间很开心。性格大大咧咧但是其实是会在心里掉小珍珠那种感觉哈哈哈哈。</p>
+            <p>平时很神经，但是一到正事儿又很拿得住主意，很靠得住那种感觉。哎哎，也是被圈粉了好吧。</p>
+            <p>然后希望你和小鲁可以天天开心^^长长久久哦，ow早日百强哈，国服最强T这一块，嗯，然后顺利毕业，早日攒够去日本的钱，加油哦！</p>
+            <p>就这样❤️最后再祝一遍生日快乐！天天开心！</p>
+            <div class="signature">—— 你的朋友们</div>
+        </div>
+        
+        <button class="btn" id="replayBtn" style="display: none;">再次观看</button>
+    </div>
+    
+    <div class="hearts" id="hearts"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const flame = document.getElementById('flame');
+            const message = document.getElementById('message');
+            const replayBtn = document.getElementById('replayBtn');
+            const heartsContainer = document.getElementById('hearts');
+            const instruction = document.querySelector('.instruction');
+            
+            // 创建漂浮的心形
+            function createHearts() {
+                for (let i = 0; i < 15; i++) {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart');
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.animationDelay = Math.random() * 5 + 's';
+                    heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                    heartsContainer.appendChild(heart);
+                    
+                    // 开始动画
+                    setTimeout(() => {
+                        heart.style.opacity = '1';
+                        heart.style.transform = `translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px)`;
+                    }, 100);
+                }
+            }
+            
+            // 创建彩色纸屑
+            function createConfetti() {
+                const colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4CAF50'];
+                
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 2 + 's';
+                    document.body.appendChild(confetti);
+                    
+                    // 5秒后移除
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 7000);
+                }
+            }
+            
+            // 吹蜡烛功能
+            flame.addEventListener('click', function() {
+                // 吹灭蜡烛
+                flame.style.opacity = '0';
+                flame.style.animation = 'none';
+                
+                // 隐藏提示文字
+                instruction.style.opacity = '0';
+                
+                // 创建吹灭效果
+                createConfetti();
+                
+                // 显示消息
+                setTimeout(() => {
+                    message.classList.add('show');
+                    replayBtn.style.display = 'block';
+                }, 1000);
+                
+                // 创建漂浮的心形
+                createHearts();
+            });
+            
+            // 重新播放功能
+            replayBtn.addEventListener('click', function() {
+                flame.style.opacity = '1';
+                flame.style.animation = 'flicker 1s infinite alternate';
+                message.classList.remove('show');
+                replayBtn.style.display = 'none';
+                instruction.style.opacity = '1';
+                
+                // 清除所有心形
+                while (heartsContainer.firstChild) {
+                    heartsContainer.removeChild(heartsContainer.firstChild);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
